@@ -144,10 +144,6 @@ The project uses Radix UI primitives with Tailwind CSS. All components are locat
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is based on the original Figma design available at: https://www.figma.com/design/HrFcOfHssLG0RwpJT7W0IQ/Design-99x-Agent-Studio
-
 ## 🆘 Support
 
 If you encounter any issues or have questions:
