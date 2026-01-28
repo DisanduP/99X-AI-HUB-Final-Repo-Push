@@ -1,13 +1,15 @@
 
-# 99X AI Hub - Next.js Dashboard
+# 99X AI Hub - AI Agent Management System
 
-A modern, responsive dashboard application for AI agent management built with Next.js, featuring a beautiful Nordic-inspired UI design with teal accents. This project provides a comprehensive interface for managing agents, monitoring metrics, and team collaboration.
+A comprehensive, modern dashboard application for AI agent management built with Next.js, featuring a beautiful Nordic-inspired UI design with teal accents. This project provides a complete interface for managing AI agents, monitoring performance metrics, team collaboration, and real-time analytics.
 
 ## 🚀 Features
 
-- **Agent Management**: View and manage AI agents with detailed information
-- **Metrics Dashboard**: Real-time monitoring and analytics with interactive charts
+- **Agent Management**: View, filter, and manage AI agents with detailed inline information
+- **Interactive Agent Details**: Click on agent cards to view comprehensive details including performance charts, configuration, and execution history - all on the same page
+- **Real-time Metrics Dashboard**: Monitor agent performance with interactive charts and analytics
 - **Team Collaboration**: User management and team insights
+- **Advanced Filtering**: Filter agents by team, environment, model, and status
 - **Responsive Design**: Modern UI with Nordic color palette and teal accents
 - **TypeScript Support**: Full type safety throughout the application
 - **Component Library**: Built with Radix UI and Tailwind CSS
@@ -21,6 +23,7 @@ A modern, responsive dashboard application for AI agent management built with Ne
 - **UI Components**: Radix UI
 - **Charts**: Recharts
 - **Icons**: Lucide React
+- **Date Handling**: date-fns
 - **Theme**: Custom CSS variables with dark/light mode
 
 ## 📋 Prerequisites
@@ -42,8 +45,8 @@ npm --version
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/DisanduP/99X-AI-HUB-NEXTJS.git
-cd 99X-AI-HUB-NEXTJS
+git clone https://github.com/DisanduP/99X-AI-HUB-Final-Repo-Push.git
+cd 99X-AI-HUB-Final-Repo-Push
 ```
 
 ### 2. Install Dependencies
@@ -77,27 +80,52 @@ The application will be available at [http://localhost:3000](http://localhost:30
 ├── src/
 │   ├── app/                    # Next.js App Router directory
 │   │   ├── layout.tsx         # Root layout
-│   │   ├── page.tsx           # Home page
+│   │   ├── page.tsx           # Home page (Dashboard)
 │   │   ├── globals.css        # Global styles
-│   │   ├── agents/            # Agents management page
-│   │   │   ├── page.tsx       # Agents list
-│   │   │   └── [id]/          # Dynamic agent detail page
+│   │   ├── providers.tsx      # Context providers
+│   │   ├── types.ts           # TypeScript type definitions
+│   │   ├── agents/            # Agents management routes
+│   │   │   ├── page.tsx       # Agents list page
+│   │   │   └── [id]/          # Dynamic agent detail routes
 │   │   │       └── page.tsx
 │   │   ├── components/        # Reusable UI components
 │   │   │   ├── ui/           # Base UI components (buttons, inputs, etc.)
 │   │   │   ├── Sidebar.tsx    # Navigation sidebar
 │   │   │   ├── MetricCard.tsx # Metric display cards
-│   │   │   └── ...
+│   │   │   ├── StatusBadge.tsx # Status indicator component
+│   │   │   └── ErrorBoundary.tsx # Error boundary component
+│   │   ├── data/             # Mock data and utilities
+│   │   │   └── mockData.ts    # Sample data and filtering functions
 │   │   ├── metrics/           # Metrics dashboard page
 │   │   │   └── page.tsx
-│   │   ├── team/              # Team management page
+│   │   ├── pages/            # Page components
+│   │   │   ├── Agents.tsx     # Agents management page (with inline details)
+│   │   │   ├── Dashboard.tsx  # Main dashboard with metrics
+│   │   │   ├── AgentDetail.tsx # Agent detail component
+│   │   │   ├── Metrics.tsx    # Metrics page
+│   │   │   ├── Settings.tsx   # Settings page
+│   │   │   └── Team.tsx       # Team management page
+│   │   ├── services/         # API service functions
+│   │   │   ├── agentService.ts # Agent-related API calls
+│   │   │   ├── teamService.ts  # Team-related API calls
+│   │   │   └── adminaccessservice.ts # Admin services
+│   │   ├── settings/         # Settings page route
 │   │   │   └── page.tsx
-│   │   └── data/             # Mock data and types
-│   │       └── mockData.ts    # Sample data
-│   ├── styles/               # Styling files
-│   │   ├── fonts.css         # Font definitions
-│   │   ├── index.css         # Main CSS file
-│   │   ├── tailwind.css      # Tailwind CSS imports
+│   │   └── team/             # Team management route
+│   │       └── page.tsx
+│   └── styles/               # Styling files
+│       ├── fonts.css         # Font definitions
+│       ├── index.css         # Main CSS file
+│       ├── tailwind.css      # Tailwind CSS imports
+│       └── theme.css         # Theme variables and colors
+├── public/                   # Static assets
+├── package.json              # Dependencies and scripts
+├── tailwind.config.js        # Tailwind CSS configuration
+├── tsconfig.json             # TypeScript configuration
+├── next.config.js            # Next.js configuration
+├── postcss.config.js         # PostCSS configuration
+└── README.md                 # This file
+```
 │   │   └── theme.css         # Theme variables and colors
 │   └── types.ts              # TypeScript type definitions
 ├── public/                   # Static assets
@@ -105,8 +133,30 @@ The application will be available at [http://localhost:3000](http://localhost:30
 ├── tailwind.config.js        # Tailwind CSS configuration
 ├── tsconfig.json             # TypeScript configuration
 ├── next.config.js            # Next.js configuration
-└── postcss.config.js         # PostCSS configuration
+├── postcss.config.js         # PostCSS configuration
+└── README.md                 # This file
 ```
+
+## 🎨 Key Features Explained
+
+### Inline Agent Details View
+Unlike traditional navigation that redirects to separate pages, this application features an innovative inline details system:
+- Click on any agent card to view comprehensive details below the agent grid
+- No page navigation required - everything stays on the same page
+- Includes performance charts, configuration details, and execution history
+- Easy "Back to agents" functionality to return to the grid view
+
+### Advanced Agent Management
+- **Real-time Filtering**: Filter agents by team, environment, model, and status
+- **Search Functionality**: Search agents by name or description
+- **Status Monitoring**: Visual status badges with color coding
+- **Performance Metrics**: Success rates, execution times, and usage statistics
+
+### Interactive Dashboard
+- **Metric Cards**: Clean, informative cards showing key statistics
+- **Performance Charts**: Interactive line charts using Recharts
+- **Responsive Grid Layout**: Adapts to different screen sizes
+- **Real-time Updates**: Dynamic data with proper loading states
 
 ## 🎨 Customization
 
@@ -148,11 +198,13 @@ The project uses Radix UI primitives with Tailwind CSS. All components are locat
 
 If you encounter any issues or have questions:
 
-1. Check the [Issues](https://github.com/DisanduP/99X-AI-HUB-NEXTJS/issues) page
+1. Check the [Issues](https://github.com/DisanduP/99X-AI-HUB-Final-Repo-Push/issues) page
 2. Create a new issue with detailed information about your problem
 3. Include your Node.js version, npm version, and any error messages
 
 ---
+
+**Built with ❤️ for AI Agent Management**
 
 **Happy coding! 🚀**
   
