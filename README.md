@@ -125,7 +125,6 @@ The application will be available at [http://localhost:3000](http://localhost:30
 ├── next.config.js            # Next.js configuration
 ├── postcss.config.js         # PostCSS configuration
 └── README.md                 # This file
-```
 │   │   └── theme.css         # Theme variables and colors
 │   └── types.ts              # TypeScript type definitions
 ├── public/                   # Static assets
